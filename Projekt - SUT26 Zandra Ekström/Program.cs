@@ -11,6 +11,28 @@ namespace Projekt___SUT26_Zandra_Ekström
             string[] names = { "Zandra", "Charlie", "Kalle", "Allie", "Jinian" };
             int[] numbers = { 1837, 6774, 6538, 4328, 9274 };
 
+                        
+            string[,] accountNames =
+            {
+
+            {"Privatkonto", "Räkningskonto" , "" },
+            {"Privatkonto", "Sparkonto", "Fond" },
+            {"Kattmat", "", "" },
+            {"Privatkonto", "Fotografering", "" },
+            {"Privatkonto", "Resor", "" }, 
+
+            };
+
+            decimal[,] balances =
+            {
+
+            { 459.50m, 8910m, 0m },
+            { 5.42m, 5933m, 45934m },
+            { 583.25m, 0m, 0m },
+            { 927.11m, 9183.98m, 0m },
+            { 8272.29m, 19203m, 0m }
+
+            };
 
             int userIndex = Login(names, numbers);
 
