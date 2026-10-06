@@ -34,7 +34,17 @@ namespace Projekt___SUT26_Zandra_Ekström
 
             };
 
-            int userIndex = Login(names, numbers);
+            while (true)
+            {
+                int userIndex = Login(names, numbers);
+
+                if (userIndex == -1)
+                {
+                    break;
+                }
+
+                MainMenu(userIndex, accountNames, balances);
+            }
 
             Console.ReadKey();
         }
@@ -105,52 +115,63 @@ namespace Projekt___SUT26_Zandra_Ekström
         }
 
 
-        static void MainMenu(int userIndex)
+        static void MainMenu(int userIndex, string[,] accountNames, decimal[,] balances)
         {
-            static void MainMenu(int userIndex)
+            while (true)
             {
-                while (true)
+                Console.WriteLine("\n--- HUVUDMENY ---");
+                Console.WriteLine("1. Visa konton och saldo");
+                Console.WriteLine("2. Överför pengar");
+                Console.WriteLine("3. Ta ut pengar");
+                Console.WriteLine("4. Logga ut");
+
+                Console.Write("Välj ett alternativ: ");
+                string choice = Console.ReadLine();
+
+                switch (choice)
                 {
-                    Console.WriteLine("\n--- HUVUDMENY ---");
-                    Console.WriteLine("1. Visa konton och saldo");
-                    Console.WriteLine("2. Överför pengar");
-                    Console.WriteLine("3. Ta ut pengar");
-                    Console.WriteLine("4. Logga ut");
+                    case "1":
+                        ShowAccounts(userIndex, accountNames, balances);
+                        break;
 
-                    Console.Write("Välj ett alternativ: ");
-                    string choice = Console.ReadLine();
+                    case "2":
+                        // Här ska metoden för överföring anropas
+                        break;
 
-                    switch (choice)
+                    case "3":
+                        // Här ska metoden för uttag anropas
+                        break;
+
+                    case "4":
+                        Console.WriteLine("Du loggas ut...");
+                        return;
+
+                    default:
+                        Console.WriteLine("Ogiltigt val, försök igen.");
+                        break;
+                }
+
+                static void ShowAccounts(int userIndex, string[,] accountNames, decimal[,] balances)
+                {
+                    Console.WriteLine("\n--- DINA KONTON ---");
+
+                    for (int i = 0; i < accountNames.GetLength(1); i++)
                     {
-                        case "1":
-                            // Visa konton
-                            break;
-
-                        case "2":
-                            // Överför pengar
-                            break;
-
-                        case "3":
-                            // Ta ut pengar
-                            break;
-
-                        case "4":
-                            Console.WriteLine("Du loggas ut...");
-                            return;
-                            // Använder return istället för break för att avsluta metoden och gå tillbaka till inloggningsmenyn
-                        
-                       
-                        default:
-                            Console.WriteLine("Ogiltigt val, försök igen.");
-                            break;
-                            //Använder default för att hantera ogiltiga val och ge användaren möjlighet att försöka igen
-                            
+                        if (!string.IsNullOrEmpty(accountNames[userIndex, i]))
+                        {
+                            Console.WriteLine($"{i + 1}. {accountNames[userIndex, i]}: {balances[userIndex, i]} kr");
+                        }
                     }
+
+                    Console.WriteLine("\nTryck på Enter för att gå tillbaka till huvudmenyn.");
+                    Console.ReadLine();
                 }
             }
         }
+        
 
 
-    }
+                }
 
-}
+            }
+        
